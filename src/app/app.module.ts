@@ -1,3 +1,5 @@
+import { AuthGaurdService as AuthGaurd } from './services/auth-gaurd.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { environment } from './../environments/environment';
 import { NgModule, Component } from '@angular/core';
@@ -49,15 +51,35 @@ import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orde
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'check-out', component: CheckOutComponent },
-      { path: 'order-success', component: OrderSuccessComponent },
-      { path: 'my/orders', component: MyOrdersComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'admin/products', component: AdminProductsComponent },
-      { path: 'admin/orders', component: AdminOrdersComponent },
+      {
+        path: 'check-out',
+        component: CheckOutComponent,
+        canActivate: [AuthGaurd],
+      },
+      {
+        path: 'order-success',
+        component: OrderSuccessComponent,
+        canActivate: [AuthGaurd],
+      },
+      {
+        path: 'my/orders',
+        component: MyOrdersComponent,
+        canActivate: [AuthGaurd],
+      },
+      {
+        path: 'admin/products',
+        component: AdminProductsComponent,
+        canActivate: [AuthGaurd],
+      },
+      {
+        path: 'admin/orders',
+        component: AdminOrdersComponent,
+        canActivate: [AuthGaurd],
+      },
     ]),
   ],
-  providers: [],
+  providers: [AuthService, AuthGaurd],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,3 +1,4 @@
+import { UserService } from './services/user.service';
 import { AuthGaurdService as AuthGaurd } from './services/auth-gaurd.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginComponent } from './components/login/login.component';
@@ -79,7 +80,7 @@ import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orde
       },
     ]),
   ],
-  providers: [AuthService, AuthGaurd],
+  providers: [AuthService, AuthGaurd, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
